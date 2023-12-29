@@ -39,26 +39,21 @@
 			"response": []
 		},
 		{
-			"name": "Users List",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
+			"name": "Register",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "1|h8lw4YKmlihz2rrCdH8IyxUNf9N63dTsMcIChYXV0a403689",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
-				"method": "GET",
+				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
+						{
+							"key": "name",
+							"value": "Thamjeed",
+							"type": "text"
+						},
 						{
 							"key": "email",
 							"value": "admin@admin.com",
@@ -68,22 +63,152 @@
 							"key": "password",
 							"value": "password",
 							"type": "text"
+						},
+						{
+							"key": "confirm_password",
+							"value": "password",
+							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "{{base_url}}/users",
+					"raw": "{{base_url}}/register",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"users"
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Task",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "subject",
+							"value": "Thamjeed",
+							"type": "text"
+						},
+						{
+							"key": "start_date",
+							"value": "29-12-2023",
+							"type": "text"
+						},
+						{
+							"key": "due_date",
+							"value": "30-12-2023",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "New",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "description",
+							"type": "text"
+						},
+						{
+							"key": "priority",
+							"value": "High",
+							"type": "text"
+						},
+						{
+							"key": "notes[0][subject]",
+							"value": "asdsfsdfsd",
+							"type": "text"
+						},
+						{
+							"key": "notes[0][note]",
+							"value": "sdfs",
+							"type": "text"
+						},
+						{
+							"key": "notes[0][attachments][]",
+							"type": "file",
+							"src": [
+								"/Users/thamjeedlal/Desktop/Screenshot_1701230908.png",
+								"/Users/thamjeedlal/Desktop/Screenshot 2023-11-14 at 12.19.41 PM.png",
+								"/Users/thamjeedlal/Desktop/Screenshot 2023-11-14 at 12.19.54 PM.png"
+							]
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/task/create",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"task",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create List",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{base_url}}/task/list?filter[status]=New&filter[due_date]=2023-12-30&filter[priority]=High&filter[notes]=lal",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"task",
+						"list"
+					],
+					"query": [
+						{
+							"key": "filter[status]",
+							"value": "New"
+						},
+						{
+							"key": "filter[due_date]",
+							"value": "2023-12-30"
+						},
+						{
+							"key": "filter[priority]",
+							"value": "High"
+						},
+						{
+							"key": "filter[notes]",
+							"value": "lal"
+						}
 					]
 				}
 			},
 			"response": []
 		}
 	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "4|9lC9Mvy2PW0LDJrnNjOISJqTLdEKQMtqYpstu1EDe2eff4e1",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",

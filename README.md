@@ -13,7 +13,7 @@ Steps to follow to run this project
 ```bash
   php artisan key:generate
 ```
-Connect with Database
+4. Connect with Database
 
 3. Install composer  
 
@@ -34,11 +34,18 @@ Connect with Database
 ```bash
   php artisan db:seed
 ```
-username: admin@admin.com
-password: password
+  username: admin@admin.com
+  password: password
 
 7. Storage public
 
 ```bash
   php artisan storage:link
 ```
+8. Run the application 
+
+```bash
+  php php artisan serve
+```
+
+9. Now you can use the application a postman collection is available in this repository to check the api
