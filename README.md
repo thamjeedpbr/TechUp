@@ -13,6 +13,7 @@ Steps to follow to run this project
 ```bash
   php artisan key:generate
 ```
+Connect with Database
 
 3. Install composer  
 
@@ -28,11 +29,13 @@ Steps to follow to run this project
   php artisan migrate
 ```
 
-6. Command to Collect Coin
+6. Command to Create a user
 
 ```bash
   php artisan db:seed
 ```
+username: admin@admin.com
+password: password
 
 7. Storage public
 

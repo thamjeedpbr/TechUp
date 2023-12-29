@@ -9,6 +9,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 class ApiAuthController extends Controller
 {
@@ -17,7 +18,6 @@ class ApiAuthController extends Controller
     public function login(Request $request)
     {
         try {
-
             $v = Validator::make($request->all(), [
                 'email' => 'required|email',
                 'password' => 'required',
@@ -34,7 +34,7 @@ class ApiAuthController extends Controller
                         if ($user) {
                             $token = $user->createToken("token")->plainTextToken;
                             $succes = [
-                                'success' => ' user logged in ',
+                                'success' => 'user logged in',
                                 'token' => $token,
                                 'logged_in' => $user,
                             ];
@@ -54,6 +54,34 @@ class ApiAuthController extends Controller
         } catch (Exception $e) {
             return $this->error($e->getMessage());
         }
+    }
+
+    public function register(Request $request)
+    {
+        try {
+            $rules = [
+                'name' => 'required',
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+            ];
+
+            $validator = Validator::make($request->all(), $rules);
+
+            if ($validator->fails()) {
+                return $this->error($validator->errors());
+            }
+
+            $user = new User();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
+            if ($user->save()) {
+                return $this->success("Registered Succesfully");
+            }
+        } catch (Exception $e) {
+            return $this->error('Try again');
+        }
+
     }
 
     public function logout(Request $request)
