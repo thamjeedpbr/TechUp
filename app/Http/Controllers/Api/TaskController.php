@@ -27,7 +27,8 @@ class TaskController extends Controller
             'priority' => 'required|in:High,Medium,Low',
             'notes' => "required|array",
             'notes.*.subject' => 'required|string|max:255',
-            'notes.*.attachments' => 'nullable|file',
+            'notes.*.attachments' => 'nullable|array',
+            'notes.*.attachments.*' => 'nullable|file',
             'notes.*.note' => 'required|string',
         ]);
 
